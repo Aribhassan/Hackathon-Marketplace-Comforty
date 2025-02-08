@@ -1,0 +1,12 @@
+Test Case,Test Case Description,Test Steps,Expected Result,Actual Result,Status,Severity Level,Remarks
+TC001,Product Listing,Verify product display,Products load dynamically,Displayed correctly,Passed,High,No issues found
+TC002,Filters and Search,Apply filters and search,Filters show relevant results,Filters worked as expected,Passed,Medium,Test successful
+TC003,Cart Operations - Add,Add items to cart,Items added successfully,Items added successfully,Passed,Medium,Test successful
+TC004,Cart Operations - Update,Update item quantities,Quantities update correctly,Quantities updated,Passed,Medium,Test successful
+TC005,Cart Operations - Remove,Remove items from cart,Items removed successfully,Items removed,Passed,Medium,Test successful
+TC006,Cart Summary,Check cart summary,Correct total and item count,Summary reflected correctly,Passed,Medium,Test successful
+TC007,Dynamic Routing,Verify dynamic routing,Correct product details load,Dynamic routing works,Passed,High,No issues found
+TC008,API Response Validation,Test product API endpoint,Returns 200 OK with valid schema,API responded correctly,Passed,High,Schema verified
+TC009,Error Handling,Simulate network failure,Display user-friendly error,Error message shown,Passed,Medium,Security measures added
+TC010,Cross-Browser Rendering,Test UI on Chrome/Safari/Firefox,Consistent layout across browsers,No visual discrepancies,Passed,Medium,All browsers supported
+,,,,,,,
