@@ -12,7 +12,7 @@ import { client } from "@/sanity/lib/client";
 import LibraryStoolChair from "../../../assets/Library-Stool-Chair-1.png"; 
 
 interface ProductType {
-  title: string;
+  title: string; 
   price: number;
   image: string;
   badge: string;
