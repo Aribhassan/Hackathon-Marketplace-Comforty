@@ -9,7 +9,7 @@ import { PiPlant } from "react-icons/pi";
 import BrandDifferentCard from "../components/cards/BrandDifferentCard";
 import PopularProductCard from "../components/cards/PopularProductCard";
 import { client } from "@/sanity/lib/client";
-import LibraryStoolChair from "../../assets/Library-Stool-Chair-1.png"; 
+import LibraryStoolChair from "./assets/Library-Stool-Chair-1.png"; 
 
 interface ProductType {
   title: string;
