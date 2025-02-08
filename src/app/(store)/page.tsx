@@ -1,12 +1,9 @@
-"use client"
+"use client";
 
-import Hero from "./components/home/Hero";
-import FeaturedProducts from "./components/home/FeaturedProducts";
-import TopCategories from "./components/home/TopCategories";
-import StyleProducts from "./components/home/StyleProducts";
-import OurProducts from "./components/home/OurProducts";
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
+import { client } from "@/sanity/lib/client";
 
+// Define your types
 interface ProductType {
   id: string;
   name: string;
@@ -15,7 +12,7 @@ interface ProductType {
   slug: number; 
   isNew: boolean;
   onSale: boolean;
-};
+}
 
 interface CategoryType {
   id: string;
@@ -26,7 +23,20 @@ interface CategoryType {
   slug: number; 
 }
 
-import { client } from "@/sanity/lib/client";
+// Lazy load the components
+const Hero = React.lazy(() => import("./components/home/Hero"));
+const FeaturedProducts = React.lazy(
+  () => import("./components/home/FeaturedProducts")
+);
+const TopCategories = React.lazy(
+  () => import("./components/home/TopCategories")
+);
+const StyleProducts = React.lazy(
+  () => import("./components/home/StyleProducts")
+);
+const OurProducts = React.lazy(
+  () => import("./components/home/OurProducts")
+);
 
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<ProductType[]>([]);
@@ -98,20 +108,42 @@ export default function Home() {
   }, []);
 
   if (isLoading) {
-    return <div className="flex justify-center items-center">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center">
+        Loading...
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="flex items-center justify-center text-center text-red-500 mx-auto">{error}</div>;
+    return (
+      <div className="flex items-center justify-center text-center text-red-500 mx-auto">
+        {error}
+      </div>
+    );
   }
 
   return (
     <div>
-      <Hero />
-      <FeaturedProducts products={featuredProducts} />
-      <TopCategories categories={categoryProducts} />
-      <StyleProducts products={styleProducts} />
-      <OurProducts products={ourProducts} />
+      <Suspense fallback={<div>Loading Hero...</div>}>
+        <Hero />
+      </Suspense>
+      
+      <Suspense fallback={<div>Loading Featured Products...</div>}>
+        <FeaturedProducts products={featuredProducts} />
+      </Suspense>
+      
+      <Suspense fallback={<div>Loading Top Categories...</div>}>
+        <TopCategories categories={categoryProducts} />
+      </Suspense>
+      
+      <Suspense fallback={<div>Loading Style Products...</div>}>
+        <StyleProducts products={styleProducts} />
+      </Suspense>
+      
+      <Suspense fallback={<div>Loading Our Products...</div>}>
+        <OurProducts products={ourProducts} />
+      </Suspense>
     </div>
   );
 }
